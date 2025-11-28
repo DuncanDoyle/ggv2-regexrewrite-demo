@@ -1,0 +1,21 @@
+apiVersion: gloo.solo.io/v1alpha1
+kind: GlooTrafficPolicy
+metadata:
+  name: extauth-httproute-policy
+  namespace: default
+spec:
+  targetRefs:
+    - name: api-example-com
+      group: gateway.networking.k8s.io
+      kind: HTTPRoute
+  # targetSelectors:
+  # - group: gateway.networking.k8s.io
+  #   kind: HTTPRoute
+  #   matchLabels:
+  #     extauth: basic
+  glooExtAuth:
+    # extensionRef:
+    #   name: ext-authz
+    authConfigRef:
+      name: basic-auth
+      namespace: gloo-gateway-system

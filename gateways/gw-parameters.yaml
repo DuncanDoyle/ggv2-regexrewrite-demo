@@ -1,0 +1,21 @@
+apiVersion: gloo.solo.io/v1alpha1
+kind: GlooGatewayParameters
+metadata:
+  name: custom-gw-params
+  namespace: ingress-gw
+spec:
+  kube:
+    envoyContainer:
+      bootstrap:
+        logLevel: info
+  # kube: 
+  #   service:
+  #     type: NodePort
+  #     extraLabels: 
+  #       gateway: custom
+  #   podTemplate: 
+  #     extraLabels:
+  #       gateway: custom
+  #     securityContext: 
+  #       fsGroup: 50000
+  #       runAsUser: 50000

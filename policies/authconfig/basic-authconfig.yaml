@@ -1,0 +1,14 @@
+apiVersion: extauth.solo.io/v1
+kind: AuthConfig
+metadata:
+  name: basic-auth
+  namespace: gloo-gateway-system
+spec:
+  configs:
+  - basicAuth:
+      apr:
+        users:
+          # user:password
+          user:
+            salt: "TYiryv0/"
+            hashedPassword: "8BvzLUO9IfGPGGsPnAgSu1"

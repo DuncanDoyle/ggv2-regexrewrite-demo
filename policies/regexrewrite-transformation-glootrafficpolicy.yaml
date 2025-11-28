@@ -1,0 +1,29 @@
+apiVersion: gloo.solo.io/v1alpha1
+kind: GlooTrafficPolicy
+metadata:
+  name: regexrewrite-transformation-policy
+  namespace: default
+spec:
+  targetRefs:
+    - name: api-example-com
+      group: gateway.networking.k8s.io
+      kind: HTTPRoute
+  glooTransformation:
+    stages:
+      regular:
+        requests:
+          - matcher:
+              regex:
+                regex: '^\/v1\/\d{3}\/status$'
+            transformation:
+              template: 
+                extractors:
+                  statuscode:
+                    header: ':path'
+                    regex: '^\/v1\/(\d{3})\/status$'
+                    subgroup: 1
+                headers: 
+                  "x-test": "duncans-test"
+                  ":path": "/status/{{ statuscode }}"                
+            # ddoyle: The regex-rewrite does not seem to work when I set clearRouteCache to `true`. Not sure why that is ....
+            clearRouteCache: false

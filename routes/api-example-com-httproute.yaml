@@ -10,19 +10,14 @@ spec:
   parentRefs:
     - name: gw
       namespace: ingress-gw
-      # Bind to a specific listener in the parentRef (Gateway) using sectionName field.
-      # sectionName: foo
   hostnames:
     - "api.example.com"
   rules:
     - matches:  
       - path:
           type: RegularExpression
-          # Match http://api.example.com/removethis/{status-group}/status
-          # E.g. http://api.example.com/removethis/200/status
+          # Match http://api.example.com/v1/{status-code}/status
           value: ^\/v1\/\d{3}\/status$
-          # type: PathPrefix
-          # value: /
       backendRefs:
       - name: httpbin
         namespace: httpbin

@@ -1,8 +1,6 @@
 
 #!/bin/sh
 
-# export KGATEWAY_VERSION="v2.0.0"
-# export GGV2_VERSION="2.0.0-rc.2"
 export GGV2_VERSION="2.0.1"
 export GGV2_HELM_VALUES_FILE="ggv2-helm-values.yaml"
 export K8S_GW_API_VERSION="v1.4.0"
